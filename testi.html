@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Wrapper for overall layout */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #f4f4f9;
+}
+
+/* Testimonial container with fixed width and height */
+.testimonial-container {
+    position: relative;
+    width: 700px;
+    height: 250px;
+    overflow: hidden;
+}
+
+/* Individual testimonial card styling */
+.testimonial-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.testimonial-card.active {
+    opacity: 1;
+}
+
+.testimonial-text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.testimonial-author {
+    font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="testimonial-container">
+            <div class="testimonial-card" id="testimonial-1">
+                <p class="testimonial-text">"This product changed my life! The user experience is fantastic."</p>
+                <p class="testimonial-author">- John Doe</p>
+            </div>
+            <div class="testimonial-card" id="testimonial-2">
+                <p class="testimonial-text">"Amazing service and support! Highly recommend to everyone."</p>
+                <p class="testimonial-author">- Jane Smith</p>
+            </div>
+            <div class="testimonial-card" id="testimonial-3">
+                <p class="testimonial-text">"A game-changer in the industry. I can't imagine working without it."</p>
+                <p class="testimonial-author">- Alex Johnson</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const testimonials = document.querySelectorAll('.testimonial-card');
+let currentTestimonial = 0;
+
+function showTestimonial(index) {
+    testimonials.forEach((testimonial, i) => {
+        testimonial.classList.remove('active');
+        if (i === index) {
+            testimonial.classList.add('active');
+        }
+    });
+}
+
+function nextTestimonial() {
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    showTestimonial(currentTestimonial);
+}
+
+setInterval(nextTestimonial, 3000); // Change every 3 seconds
+
+// Show the first testimonial by default
+showTestimonial(currentTestimonial);
+
+</script>
+</body>
+</html>
